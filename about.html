@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Aguma Outreach</title>
+    <link rel="icon" type="image/png" href="logo.jpg" sizes="32x32">
+    <link rel="icon" type="image/png" href="logo.jpg" sizes="16x16">
+    <link rel="shortcut icon" href="logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.jpg">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow+Semi+Condensed:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --brand-yellow: #d531c2;
+            --text-white: #ffffff;
+            --gray-muted: #888;
+            --border-thick: 2px solid #333;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.4;
+            text-transform: uppercase;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; letter-spacing: -1px; }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+
+        /* --- Header --- */
+        header {
+            background: #000;
+            border-bottom: 1px solid #333;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: relative;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-area img {
+            height: 1.4cm;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            color: var(--brand-yellow);
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        /* Desktop Navigation */
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 40px; 
+            align-items: center; 
+        }
+        
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover { color: var(--brand-yellow); }
+        .nav-links a::before { content: '/'; margin-right: 3px; color: var(--gray-muted); }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: #000;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 40px 40px;
+                gap: 30px;
+                transition: right 0.4s ease;
+                border-left: 1px solid #333;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.3rem;
+                width: 100%;
+                padding: 10px 0;
+                border-bottom: 1px solid #222;
+            }
+            
+            .nav-links a::before {
+                content: '/';
+                margin-right: 10px;
+            }
+            
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 999;
+            }
+            
+            .overlay.active {
+                display: block;
+            }
+            
+            .donate-btn-mobile {
+                margin-top: 20px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .logo-area {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+            }
+        }
+
+        .btn-yellow {
+            background: var(--brand-yellow);
+            color: #000;
+            padding: 12px 25px;
+            font-weight: 800;
+            text-decoration: none;
+            border: none;
+            transition: var(--transition);
+        }
+        
+        .btn-yellow:hover { 
+            background: #fff; 
+            transform: skewX(-10deg); 
+        }
+
+        /* --- About Hero --- */
+        .about-hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            border-bottom: var(--border-thick);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./yp (1).jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+        }
+
+        .about-hero .tag {
+            color: var(--brand-yellow);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .about-hero h1 span {
+            color: var(--brand-yellow);
+        }
+
+        /* --- Mission Section --- */
+        .mission-section {
+            padding: 100px 0;
+            background: #000;
+            border-bottom: var(--border-thick);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .mission-content h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            line-height: 1;
+        }
+
+        .mission-content h2 span {
+            color: var(--brand-yellow);
+        }
+
+        .mission-text {
+            text-transform: none;
+            color: #888;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 1px solid #333;
+            filter: grayscale(30%);
+            transition: var(--transition);
+        }
+
+        .mission-image img:hover {
+            filter: grayscale(0%);
+            border-color: var(--brand-yellow);
+        }
+
+        /* --- Story Section --- */
+        .story-section {
+            padding: 100px 0;
+            border-bottom: var(--border-thick);
+        }
+
+        .story-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .story-header h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .story-header .tag {
+            color: var(--brand-yellow);
+            font-weight: 700;
+        }
+
+        .story-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-year {
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .timeline-year .year {
+            color: var(--brand-yellow);
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+
+        .timeline-content {
+            flex: 1;
+            border-left: 2px solid #333;
+            padding-left: 40px;
+            padding-bottom: 30px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--brand-yellow);
+        }
+
+        .timeline-content p {
+            text-transform: none;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* --- Team Section --- */
+        .team-section {
+            padding: 100px 0;
+            background: #000;
+            border-bottom: var(--border-thick);
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .team-header h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: #121212;
+            border: 1px solid #222;
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            border-color: var(--brand-yellow);
+            transform: translateY(-5px);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 300px;
+            background: #1a1a1a;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .team-card .role {
+            color: var(--brand-yellow);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .team-card p {
+            text-transform: none;
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- Values Section --- */
+        .values-section {
+            padding: 100px 0;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .values-header h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2px;
+            background: #333;
+            border: 2px solid #333;
+        }
+
+        .value-card {
+            background: #121212;
+            padding: 50px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            background: #1a1a1a;
+        }
+
+        .value-card i {
+            font-size: 3rem;
+            color: var(--brand-yellow);
+            margin-bottom: 30px;
+        }
+
+        .value-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .value-card p {
+            text-transform: none;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer { padding: 100px 0 40px; background: #000; }
+        
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .footer-logo { font-size: 3rem; color: var(--brand-yellow); margin-bottom: 20px; }
+        .footer-link-group h4 { margin-bottom: 30px; color: var(--gray-muted); }
+        .footer-link-group ul { list-style: none; }
+        .footer-link-group li { margin-bottom: 15px; }
+        .footer-link-group a { color: #fff; text-decoration: none; transition: var(--transition); }
+        .footer-link-group a:hover { color: var(--brand-yellow); }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .mission-image img {
+                height: 400px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .timeline-year {
+                text-align: left;
+            }
+            
+            .timeline-content {
+                border-left: none;
+                border-top: 2px solid #333;
+                padding-left: 0;
+                padding-top: 30px;
+            }
+            
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+            }
+            
+            .mission-content h2,
+            .story-header h2,
+            .team-header h2,
+            .values-header h2 {
+                font-size: 3rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .value-card,
+            .team-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-area">
+                    <img src="logo.jpg" alt="Aguma Outreach Logo">
+                    The Aguma Outreach Network
+                </div>
+                
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="overlay" id="overlay"></div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" style="color: var(--brand-yellow);">About</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Impact.html">Impact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="donate-btn-mobile">
+                        <a href="Donate.html" class="btn-yellow">/DONATE</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content">
+                <span class="tag">// OUR STORY</span>
+                <h1>HONORING A <span>LEGACY</span> OF COMPASSION</h1>
+                <p style="text-transform: none; color: #ccc; font-size: 1.1rem; max-width: 600px;">
+                    Founded in memory of Chief Emmanuel Aguma, our organization carries forward his lifelong commitment to serving the most vulnerable in our society. What began as a small community initiative has grown into a movement of hope and transformation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-content">
+                    <h2>OUR <span>MISSION</span> & VISION</h2>
+                    <p class="mission-text">
+                        To empower vulnerable communities through sustainable humanitarian aid, education, and skill development programs, creating pathways out of poverty and restoring dignity to those in need.
+                    </p>
+                    <p class="mission-text">
+                        We envision a society where every individual, regardless of circumstance, has access to basic necessities, quality education, and opportunities to build a better future for themselves and their families.
+                    </p>
+                    <a href="Programs.html" class="btn-yellow">/SEE OUR PROGRAMS</a>
+                </div>
+                <div class="mission-image">
+                    <img src="./YRT (5).jpg" alt="Mission Work">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="container">
+            <div class="story-header">
+                <h2>/OUR JOURNEY</h2>
+                <div class="tag">A TIMELINE OF IMPACT</div>
+            </div>
+            
+            <div class="story-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">
+                        <div class="year">2018</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>THE BEGINNING</h3>
+                        <p>Aguma Outreach was founded in honor of Chief Emmanuel Aguma, starting with small-scale food distribution to widows and orphans in local communities. Our first outreach touched 50 families.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">
+                        <div class="year">2020</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>PANDEMIC RESPONSE</h3>
+                        <p>During the COVID-19 pandemic, we expanded our services to include hygiene kits distribution and emergency relief for families affected by lockdowns, serving over 1,000 households.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">
+                        <div class="year">2022</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>SKILL ACQUISITION LAUNCH</h3>
+                        <p>We launched our vocational training programs, providing youth with skills in tailoring, digital literacy, and sustainable crafts, creating pathways to sustainable livelihoods.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">
+                        <div class="year">2024</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>COMMUNITY EXPANSION</h3>
+                        <p>Expanded our reach to 15+ communities across the region, establishing regular medical outreach programs and educational support initiatives for vulnerable children.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="values-section">
+        <div class="container">
+            <div class="values-header">
+                <h2>/OUR VALUES</h2>
+                <div class="tag">WHAT GUIDES OUR WORK</div>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>COMPASSION</h3>
+                    <p>We approach every individual with empathy and understanding, recognizing the inherent dignity in every person we serve.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>COMMUNITY</h3>
+                    <p>We believe in working with communities, not just for them. Our programs are designed in collaboration with local leaders and beneficiaries.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>INTEGRITY</h3>
+                    <p>We maintain the highest standards of transparency and accountability in all our operations and use of resources.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>SUSTAINABILITY</h3>
+                    <p>We focus on creating lasting change through programs that empower individuals to become self-sufficient and resilient.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-logo">AGUMA.</div>
+                    <p style="text-transform: none; color: #888;">Dedicated to the legacy of Chief Emmanuel Aguma. Empowering the heart of the needy We're reminded that even the smallest act of kindness can create ripples of change. Together, we build a future where no one is left behind.</p>
+                </div>
+                <div class="footer-link-group">
+                    <h4>PAGES</h4>
+                    <ul>
+                        <li><a href="index.html">/HOME</a></li>
+                        <li><a href="about.html">/ABOUT US</a></li>
+                        <li><a href="programs.html">/PROGRAMS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-group">
+                    <h4>SOCIAL</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/agumaoutreach/">/INSTAGRAM</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #222; padding-top: 40px; font-size: 0.8rem; color: #555;">
+                © 2026 AGUMA OUTREACH NETWORK. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const overlay = document.getElementById('overlay');
+        const menuIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        overlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        });
+
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>

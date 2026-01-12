@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguma Outreach | Heritage & Community</title>
+    <link rel="icon" type="image/png" href="logo.jpg" sizes="32x32">
+    <link rel="icon" type="image/png" href="logo.jpg" sizes="16x16">
+    <link rel="shortcut icon" href="logo.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.jpg">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow+Semi+Condensed:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --brand-yellow: #d531c2;
+            --text-white: #ffffff;
+            --gray-muted: #888;
+            --border-thick: 2px solid #333;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.4;
+            text-transform: uppercase;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; letter-spacing: -1px; }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+
+        /* --- Tradica Header --- */
+        header {
+            background: #000;
+            border-bottom: 1px solid #333;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: relative;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-area img {
+            height: 1.4cm;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            color: var(--brand-yellow);
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        /* Desktop Navigation */
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 40px; 
+            align-items: center; 
+        }
+        
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover { color: var(--brand-yellow); }
+        .nav-links a::before { content: '/'; margin-right: 3px; color: var(--gray-muted); }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: #000;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 40px 40px;
+                gap: 30px;
+                transition: right 0.4s ease;
+                border-left: 1px solid #333;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.3rem;
+                width: 100%;
+                padding: 10px 0;
+                border-bottom: 1px solid #222;
+            }
+            
+            .nav-links a::before {
+                content: '/';
+                margin-right: 10px;
+            }
+            
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 999;
+            }
+            
+            .overlay.active {
+                display: block;
+            }
+            
+            .donate-btn-mobile {
+                margin-top: 20px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .logo-area {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+            }
+        }
+
+        .btn-yellow {
+            background: var(--brand-yellow);
+            color: #000;
+            padding: 12px 25px;
+            font-weight: 800;
+            text-decoration: none;
+            border: none;
+            transition: var(--transition);
+        }
+        
+        .btn-yellow:hover { 
+            background: #fff; 
+            transform: skewX(-10deg); 
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            border-bottom: var(--border-thick);
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./YRT (14).jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero span { color: var(--brand-yellow); }
+
+        /* --- Brutalist Sections --- */
+        section { padding: 100px 0; border-bottom: 1px solid #333; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 { font-size: 4rem; }
+        .section-header .tag { color: var(--brand-yellow); font-weight: 700; }
+
+        /* --- Card Grid --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2px;
+            background: #333;
+            border: 2px solid #333;
+        }
+
+        .card {
+            background: #121212;
+            padding: 50px;
+            transition: var(--transition);
+        }
+
+        .card:hover { background: #1a1a1a; }
+        .card i { font-size: 3rem; color: var(--brand-yellow); margin-bottom: 20px; }
+        .card h3 { font-size: 2rem; margin-bottom: 15px; }
+        .card p { color: #aaa; text-transform: none; }
+
+        /* --- Bento Grid Layout --- */
+        .bento-about {
+            padding: 80px 0;
+            background: #000;
+            border-bottom: var(--border-thick);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, minmax(280px, auto));
+            gap: 15px;
+        }
+
+        .bento-item {
+            background: #121212;
+            border: 1px solid #222;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: var(--transition);
+        }
+
+        .bento-item:hover {
+            border-color: var(--brand-yellow);
+        }
+
+        .bento-main { grid-column: span 2; grid-row: span 2; background: #1a1a1a; }
+        .bento-img { grid-column: span 2; grid-row: span 1; padding: 0; }
+        .bento-stat { grid-column: span 1; grid-row: span 1; text-align: center; justify-content: center; }
+
+        .bento-tag {
+            color: var(--brand-yellow);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .bento-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .bento-title span { color: var(--brand-yellow); }
+
+        .bento-p {
+            text-transform: none;
+            color: #888;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .bento-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .bento-img:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--brand-yellow);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer { padding: 100px 0 40px; background: #000; }
+        
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .footer-logo { font-size: 3rem; color: var(--brand-yellow); margin-bottom: 20px; }
+        .footer-link-group h4 { margin-bottom: 30px; color: var(--gray-muted); }
+        .footer-link-group ul { list-style: none; }
+        .footer-link-group li { margin-bottom: 15px; }
+        .footer-link-group a { color: #fff; text-decoration: none; transition: var(--transition); }
+        .footer-link-group a:hover { color: var(--brand-yellow); }
+
+        /* Responsive Bento Grid */
+        @media (max-width: 992px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .bento-grid {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .bento-main { height: 400px; }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-area">
+                    <img src="logo.jpg" alt="Aguma Outreach Logo">
+                    The Aguma Outreach Network
+                </div>
+                
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="overlay" id="overlay"></div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Impact.html">Impact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="donate-btn-mobile">
+                        <a href="Donate.html" class="btn-yellow">/DONATE</a>
+                    </li>
+                </ul>
+            
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="tag">// LEGACY & EMPOWERMENT</div>
+            <h1>ROOTED IN<br><span>COMPASSION.</span></h1>
+            <p style="max-width: 600px; font-size: 1.2rem; margin-top: 20px; text-transform: none; color: #ccc;">
+                Aguma Outreach serves as a beacon of hope Restoring dignity and hope to vulnerable children through food, education, and care, bridging the gap for vulnerable populations through direct humanitarian action.
+            </p>
+        </div>
+    </section>
+
+    <section class="bento-about" id="about">
+        <div class="container">
+            <div class="bento-grid">
+                <div class="bento-item bento-main">
+                    <span class="bento-tag">// LEGACY & EMPOWERMENT</span>
+                    <h1 class="bento-title"> Feeding Dreams & Healing Futures<br><span></span></h1>
+                    <p class="bento-p">
+                        Aguma Outreach serves as a beacon of hope. Restoring dignity and hope to vulnerable children through food, education, and care, bridging the gap for vulnerable populations through direct humanitarian action.
+                    </p>
+                    <a href="about.html" class="btn-yellow" style="align-self: flex-start; margin-top: 30px;">/LEARN MORE</a>
+                </div>
+
+                <div class="bento-item bento-img">
+                    <img src="yp (1).jpg" alt="Outreach Work">
+                </div>
+
+                <div class="bento-item bento-stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">COMMUNITIES REACHED</div>
+                </div>
+
+                <div class="bento-item bento-stat">
+                    <div class="stat-number">5K</div>
+                    <div class="stat-label">MEALS SERVED</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs">
+        <div class="container">
+            <div class="section-header">
+                <h2>/OUR PROGRAMS</h2>
+                <div class="tag">WHAT WE DO</div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>HUMANITARIAN AID</h3>
+                    <p>Essential relief through food drives and hygiene kits for widows and low-income families.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-user-md"></i>
+                    <h3>MOBILE MEDICAL</h3>
+                    <p>Volunteer doctors providing street-side screenings and medications for those without access to clinics.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-tools"></i>
+                    <h3>SKILL ACQUISITION</h3>
+                    <p>Vocational training in tailoring, digital literacy, and sustainable crafts for local youth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-logo">AGUMA.</div>
+                    <p style="text-transform: none; color: #888;">Dedicated to the legacy of Chief Emmanuel Aguma. Empowering the heart of the needy We're reminded that even the smallest act of kindness can create ripples of change. Together, we build a future where no one is left behind.</p>
+                </div>
+                <div class="footer-link-group">
+                    <h4>PAGES</h4>
+                    <ul>
+                        <li><a href="index.html">/HOME</a></li>
+                        <li><a href="about.html">/ABOUT US</a></li>
+                        <li><a href="programs.html">/PROGRAMS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-group">
+                    <h4>SOCIAL</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/agumaoutreach/">/INSTAGRAM</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #222; padding-top: 40px; font-size: 0.8rem; color: #555;">
+                © 2026 AGUMA OUTREACH NETWORK. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const overlay = document.getElementById('overlay');
+        const menuIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            // Change icon from bars to X when menu is open
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        overlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        });
+
+        // Close menu when clicking on a link (for mobile)
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Hide desktop donate button on mobile
+        function checkScreenSize() {
+            const desktopDonate = document.querySelector('.desktop-donate');
+            if (window.innerWidth <= 992) {
+                desktopDonate.style.display = 'none';
+            } else {
+                desktopDonate.style.display = 'block';
+            }
+        }
+
+        // Initial check
+        checkScreenSize();
+
+        // Check on resize
+        window.addEventListener('resize', checkScreenSize);
+    </script>
+</body>
+</html>
